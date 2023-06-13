@@ -36,21 +36,21 @@ Feature: Login
       |standard_user    |jhfhfghk      |Username and password do not match any user in this service |
       |locked_out_user  |secret_sauce  |Sorry, this user has been locked out.                       |
 
-  @login-5
-  Scenario: Login with empty username
-    Given I am on the page Login
-    When I input "" to username field
-    And input "secret_sauce" to password field
-    When I push the Login button
-    Then error with text "Username is required" is displayed
-
-  @login-6
-  Scenario: Login with empty password
-    Given I am on the page Login
-    When I input "standard_user" to username field
-    And input "" to password field
-    When I push the Login button
-    Then error with text "Password is required" is displayed
+#  @login-5
+#  Scenario: Login with empty username
+#    Given I am on the page Login
+#    When I input "" to username field
+#    And input "secret_sauce" to password field
+#    When I push the Login button
+#    Then error with text "Username is required" is displayed
+#
+#  @login-6
+#  Scenario: Login with empty password
+#    Given I am on the page Login
+#    When I input "standard_user" to username field
+#    And input "" to password field
+#    When I push the Login button
+#    Then error with text "Password is required" is displayed
 
   @login-7
   Scenario Outline: Login with empty fields
