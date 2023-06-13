@@ -1,0 +1,47 @@
+package steps;
+
+import com.codeborne.selenide.Condition;
+import cucumber.api.PendingException;
+import cucumber.api.java.en.And;
+import cucumber.api.java.en.Given;
+import cucumber.api.java.en.Then;
+import cucumber.api.java.en.When;
+
+import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Condition.visible;
+import static com.codeborne.selenide.Selenide.open;
+import static com.codeborne.selenide.Selenide.sleep;
+
+public class LoginSteps extends BaseSteps{
+    @Given("^I am on the page Login$")
+    public void iAmOnThePageLogin() {
+        System.setProperty("chromeoptions.args", "--remote-allow-origins=*");
+        open(BASE_URL);
+    }
+
+    @When("^I input \"([^\"]*)\" to username field$")
+    public void iInputToUsernameField(String usernameValue) {
+        // создали новый экземпляр класса LoginPage
+        loginPage.usernameField.setValue(usernameValue);
+        // sleep(5000);
+    }
+
+    @And("^input \"([^\"]*)\" to password field$")
+    public void inputToPasswordField(String passwordValue)  {
+        // Write code here that turns the phrase above into concrete actions
+        loginPage.passwordField.setValue(passwordValue);
+    }
+
+    @When("^I push the Login button$")
+    public void iPushTheLoginButton() {
+        loginPage.loginButton.click();
+        
+    }
+
+    @Then("^error with text \"([^\"]*)\" is displayed$")
+    public void errorWithTextIsDisplayed(String expectedText) {
+        // Write code here that turns the phrase above into concrete actions
+        loginPage.errorMessage.shouldBe(visible);
+        loginPage.errorMessage.shouldHave(text(expectedText));
+    }
+}
