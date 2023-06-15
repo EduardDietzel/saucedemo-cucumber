@@ -13,17 +13,15 @@ import static com.codeborne.selenide.Selenide.open;
 import static com.codeborne.selenide.Selenide.sleep;
 
 public class LoginSteps extends BaseSteps{
-    @Given("^I am on the page Login$")
-    public void iAmOnThePageLogin() {
+    @Given("^I open the page Login$")
+    public void iOpenThePageLogin() {
         System.setProperty("chromeoptions.args", "--remote-allow-origins=*");
         open(BASE_URL);
     }
 
     @When("^I input \"([^\"]*)\" to username field$")
     public void iInputToUsernameField(String usernameValue) {
-        // создали новый экземпляр класса LoginPage
         loginPage.usernameField.setValue(usernameValue);
-        // sleep(5000);
     }
 
     @And("^input \"([^\"]*)\" to password field$")
@@ -35,7 +33,6 @@ public class LoginSteps extends BaseSteps{
     @When("^I push the Login button$")
     public void iPushTheLoginButton() {
         loginPage.loginButton.click();
-        
     }
 
     @Then("^error with text \"([^\"]*)\" is displayed$")
@@ -43,5 +40,10 @@ public class LoginSteps extends BaseSteps{
         // Write code here that turns the phrase above into concrete actions
         loginPage.errorMessage.shouldBe(visible);
         loginPage.errorMessage.shouldHave(text(expectedText));
+    }
+
+    @Then("^I am on the page Login$")
+    public void iAmOnThePageLogin() {
+        loginPage.loginButton.shouldBe(visible);
     }
 }

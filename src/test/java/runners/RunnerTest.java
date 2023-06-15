@@ -8,7 +8,8 @@ import org.junit.runner.RunWith;
 @CucumberOptions(
         features = "src/test/java/features",
         glue = {"steps"},
-        tags = {"@login-7"}
+//        tags = {"@login"}
+        tags = {"@checkout"}
         // если запускать все тесты кроме определенного, пишем так: tags = {"~@login-2"}
 )
 
